@@ -324,11 +324,36 @@ body {
     
     .main-text {
         font-size: 2rem;
+        transform: translateY(-15px);
+        margin-bottom: 15px;
+    }
+    
+    .sub-categories {
+        opacity: 1;
+        transform: translateY(0);
     }
     
     .category-btn {
         font-size: 14px;
         padding: 6px 16px;
+    }
+    
+    /* Disable hover effects on mobile */
+    .image-item:hover .main-text {
+        transform: translateY(-15px);
+    }
+    
+    .image-item:hover .sub-categories {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    .image-item:hover .image-overlay {
+        background-color: rgba(0, 0, 0, 0.3);
+    }
+    
+    .image-item:hover img {
+        filter: none;
     }
 }
 
