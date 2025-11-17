@@ -28,24 +28,71 @@
     <section class="gallery-grid">
         <div class="grid-container">
             <div class="grid-item">
-                <img src="Images/Image1.jpg" alt="Nature Photo 1">
+                <img src="Images/Image1.webp" alt="Nature Photo 1">
             </div>
             <div class="grid-item">
-                <img src="Images/Image2.jpg" alt="Nature Photo 2">
+                <img src="Images/Image2.webp" alt="Nature Photo 2">
             </div>
             <div class="grid-item">
-                <img src="Images/Image3.jpg" alt="Nature Photo 3">
+                <img src="Images/Image3.webp" alt="Nature Photo 3">
             </div>
             <div class="grid-item">
-                <img src="Images/Image4.jpg" alt="Nature Photo 4">
+                <img src="Images/Image4.webp" alt="Nature Photo 4">
             </div>
             <div class="grid-item">
-                <img src="Images/Image5.jpg" alt="Nature Photo 5">
+                <img src="Images/Image5.webp" alt="Nature Photo 5">
             </div>
             <div class="grid-item">
-                <img src="Images/Image6.jpg" alt="Nature Photo 6">
+                <img src="Images/Image6.webp" alt="Nature Photo 6">
             </div>
         </div>
     </section>
+
+    <!-- Modal Overlay -->
+    <div id="modalOverlay" class="modal-overlay">
+        <!-- Image Modal -->
+        <div id="imageModal" class="modal-box">
+            <button class="modal-close">&times;</button>
+            <div class="modal-content-image">
+                <img id="modalImage" src="" alt="Enlarged view">
+            </div>
+        </div>
+
+        <!-- Video Modal -->
+        <div id="videoModal" class="modal-box">
+            <button class="modal-close">&times;</button>
+            <div class="modal-content-video">
+                <div class="video-left">
+                    <h2 id="videoTitle" class="video-title">Project Title</h2>
+                    <p id="videoRole" class="video-role">Role: Director</p>
+                    <div class="video-meta">
+                        <p id="videoMeta"></p>
+                    </div>
+                </div>
+                <div class="video-right">
+                    <div id="videoEmbed" class="video-embed">
+                        <!-- YouTube iframe will be inserted here -->
+                    </div>
+                </div>
+            </div>
+            <div class="video-description">
+                <h3>Description</h3>
+                <p id="videoDescription">Project description goes here...</p>
+            </div>
+        </div>
+
+        <!-- Text Modal -->
+        <div id="textModal" class="modal-box">
+            <button class="modal-close">&times;</button>
+            <div class="modal-content-text">
+                <h2 id="textTitle">Title</h2>
+                <div id="textContent" class="text-content">
+                    <p>Text content goes here...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>

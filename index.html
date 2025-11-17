@@ -39,13 +39,13 @@
     <section id="about" class="about">
         <div class="about-container">
             <div class="about-image">
-                <img src="Images/KlaudiaPicture.jpg" alt="Klaudia Zawadzka">
+                <img src="Images/KlaudiaPicture.webp" alt="Klaudia Zawadzka">
             </div>
             <div class="about-content">
                 <h2 class="about-title">Meet Klaudia</h2>
                 <p class="about-text">
-                    Hi! My name is Klaudia Zawadzka, a BA Film student at Falmouth university. I've always been interested in all forms of art: from painting and performing to photography and videography. Having tried many forms of art, the latter stuck with me the most. Collaboration is a big part of the film industry and my course has allowed me to experience that more frequently, previously the projects I had worked on involved only myself and a handful of actors however now, through the course, I have collaborated with many talented individuals with all sorts of diverse skills and talents. I can already see improvements within my work and myself as a growing creative in this industry.
-                    <br> <br> I am certain there are skills I can still improve on, however I hope that there always will be. There's perfection in errors as it gives one a chance to grow.
+                    Hi! My name is Klaudia Zawadzka, a BA Film student at Falmouth University, and I specialise in Production Design and Cinematography. I've always been interested in all forms of art: from painting and performing to photography and videography. Having tried many forms of art, the latter stuck with me the most. Collaboration is a big part of the film industry, and my course has allowed me to experience that more frequently. Previously, the projects I worked on involved only myself and a handful of actors; now, through the course, I have collaborated with many talented individuals with diverse skills and talents. I can already see improvements within my work and myself as a growing creative in this industry. 
+                    <br> <br> I am certain there are skills I can still improve on; however, I hope there will always be. There's perfection in errors, as it gives one a chance to grow.
                 </p>
             </div>
         </div>
@@ -57,7 +57,7 @@
     <section class="film-grid" id="works">
         <div class="two-images">
             <div class="image-item">
-                <img src="Images/Image4.jpg" alt="Photography">
+                <img src="Images/Image4.webp" alt="Photography">
                 <div class="image-overlay">
                     <div class="main-text">Photography</div>
                     <div class="sub-categories">
@@ -68,12 +68,12 @@
                 </div>
             </div>
             <div class="image-item">
-                <img src="Images/Image5.jpg" alt="Film Works">
+                <img src="Images/Image5.webp" alt="Film Works">
                 <div class="image-overlay">
                     <div class="main-text">Film Works</div>
                     <div class="sub-categories">
                         <a href="personal-projects.html" class="category-btn">Personal Projects</a>
-                        <a href="student-short-films.html" class="category-btn">Student Short Films</a>
+                        <a href="short-films.html" class="category-btn">Short Films</a>
                     </div>
                 </div>
             </div>
@@ -93,7 +93,7 @@
                 </div>
             </div>
             <div class="contact-image">
-                <img src="Images/Image2.jpg" alt="Klaudia Zawadzka">
+                <img src="Images/Image2.webp" alt="Klaudia Zawadzka">
             </div>
         </div>
     </section>
@@ -123,6 +123,51 @@
             </div>
         </div>
     </footer>
+
+    <!-- Modal Overlay -->
+    <div id="modalOverlay" class="modal-overlay">
+        <!-- Image Modal -->
+        <div id="imageModal" class="modal-box">
+            <button class="modal-close">&times;</button>
+            <div class="modal-content-image">
+                <img id="modalImage" src="" alt="Enlarged view">
+            </div>
+        </div>
+
+        <!-- Video Modal -->
+        <div id="videoModal" class="modal-box">
+            <button class="modal-close">&times;</button>
+            <div class="modal-content-video">
+                <div class="video-left">
+                    <h2 id="videoTitle" class="video-title">Project Title</h2>
+                    <p id="videoRole" class="video-role">Role: Director</p>
+                    <div class="video-meta">
+                        <p id="videoMeta"></p>
+                    </div>
+                </div>
+                <div class="video-right">
+                    <div id="videoEmbed" class="video-embed">
+                        <!-- YouTube iframe will be inserted here -->
+                    </div>
+                </div>
+            </div>
+            <div class="video-description">
+                <h3>Description</h3>
+                <p id="videoDescription">Project description goes here...</p>
+            </div>
+        </div>
+
+        <!-- Text Modal -->
+        <div id="textModal" class="modal-box">
+            <button class="modal-close">&times;</button>
+            <div class="modal-content-text">
+                <h2 id="textTitle">Title</h2>
+                <div id="textContent" class="text-content">
+                    <p>Text content goes here...</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
