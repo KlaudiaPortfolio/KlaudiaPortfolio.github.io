@@ -68,14 +68,18 @@ function initModalSystem() {
 
     // Close modal function
     function closeModal() {
+        if (!overlay) return;
+
         overlay.classList.remove('active');
-        setTimeout(() => {
-            imageModal.classList.remove('active');
-            videoModal.classList.remove('active');
-            textModal.classList.remove('active');
-            // Clear video embed when closing
-            document.getElementById('videoEmbed').innerHTML = '';
-        }, 400);
+
+        if (imageModal) imageModal.classList.remove('active');
+        if (videoModal) videoModal.classList.remove('active');
+        if (textModal) textModal.classList.remove('active');
+
+        const videoEmbed = document.getElementById('videoEmbed');
+        if (videoEmbed) {
+            videoEmbed.innerHTML = '';
+        }
     }
 
     // Close button click
@@ -88,17 +92,20 @@ function initModalSystem() {
 
     // Prevent modal boxes from closing when clicked
     [imageModal, videoModal, textModal].forEach(modal => {
+        if (!modal) return;
         modal.addEventListener('click', function(e) {
             e.stopPropagation();
         });
     });
 
     // Click overlay to close
-    overlay.addEventListener('click', function(e) {
-        if (e.target === overlay) {
-            closeModal();
-        }
-    });
+    if (overlay) {
+        overlay.addEventListener('click', function(e) {
+            if (e.target === overlay) {
+                closeModal();
+            }
+        });
+    }
 
     // ESC key to close
     document.addEventListener('keydown', function(e) {
@@ -109,20 +116,24 @@ function initModalSystem() {
 
     // Open Image Modal
     window.openImageModal = function(imageSrc) {
-        // Close any open modals first
-        imageModal.classList.remove('active');
-        videoModal.classList.remove('active');
-        textModal.classList.remove('active');
-        
-        document.getElementById('modalImage').src = imageSrc;
+        if (!overlay || !imageModal) return;
+
+        closeModal();
+
+        const modalImage = document.getElementById('modalImage');
+        if (!modalImage) return;
+
+        modalImage.src = imageSrc;
         overlay.classList.add('active');
-        setTimeout(() => {
-            imageModal.classList.add('active');
-        }, 10);
+        imageModal.classList.add('active');
     };
 
     // Open Video Modal
     window.openVideoModal = function(videoUrl, title, role, meta, description) {
+        if (!overlay || !videoModal) return;
+
+        closeModal();
+
         // Extract YouTube video ID
         let videoId = '';
         if (videoUrl.includes('youtube.com/watch?v=')) {
@@ -132,43 +143,58 @@ function initModalSystem() {
         }
 
         // Set content
-        document.getElementById('videoTitle').textContent = title || 'Project Title';
-        document.getElementById('videoRole').textContent = role || 'Role: ';
-        document.getElementById('videoMeta').textContent = meta || '';
-        document.getElementById('videoDescription').textContent = description || '';
+        const titleEl = document.getElementById('videoTitle');
+        const roleEl = document.getElementById('videoRole');
+        const metaEl = document.getElementById('videoMeta');
+        const descEl = document.getElementById('videoDescription');
+
+        if (titleEl) titleEl.textContent = title || 'Project Title';
+        if (roleEl) roleEl.textContent = role || 'Role: ';
+        if (metaEl) metaEl.textContent = meta || '';
+        if (descEl) descEl.textContent = description || '';
         
         // Embed video
         if (videoId) {
-            document.getElementById('videoEmbed').innerHTML = 
-                `<iframe src="https://www.youtube.com/embed/${videoId}" 
-                         allowfullscreen></iframe>`;
+            const videoEmbed = document.getElementById('videoEmbed');
+            if (videoEmbed) {
+                videoEmbed.innerHTML = 
+                    `<iframe src="https://www.youtube.com/embed/${videoId}" allowfullscreen></iframe>`;
+            }
         }
 
         overlay.classList.add('active');
-        setTimeout(() => {
-            videoModal.classList.add('active');
-        }, 10);
+        videoModal.classList.add('active');
     };
 
     // Open Text Modal
     window.openTextModal = function(title, content) {
-        document.getElementById('textTitle').textContent = title || 'Title';
-        document.getElementById('textContent').innerHTML = content || '<p>Text content goes here...</p>';
+        if (!overlay || !textModal) return;
+
+        closeModal();
+
+        const textTitle = document.getElementById('textTitle');
+        const textContent = document.getElementById('textContent');
+
+        if (textTitle) textTitle.textContent = title || 'Title';
+        if (textContent) textContent.innerHTML = content || '<p>Text content goes here...</p>';
         
         overlay.classList.add('active');
-        setTimeout(() => {
-            textModal.classList.add('active');
-        }, 10);
+        textModal.classList.add('active');
     };
 
-    // Auto-attach click handlers to grid items
-    const gridItems = document.querySelectorAll('.grid-item img');
-    gridItems.forEach(img => {
-        img.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            // Default to image modal for now
-            openImageModal(this.src);
-        });
+    // Auto-attach click handlers to grid items with images (not onclick handlers)
+    const gridItems = document.querySelectorAll('.grid-item');
+    gridItems.forEach(item => {
+        // Only add image modal handler if the item doesn't have an onclick attribute
+        if (!item.hasAttribute('onclick')) {
+            const img = item.querySelector('img');
+            if (img) {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    openImageModal(img.src);
+                });
+            }
+        }
     });
 }

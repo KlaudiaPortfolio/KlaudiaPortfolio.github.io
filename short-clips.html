@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Short Clips - Klaudia Zawadzka</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-link">HOME</a>
+            <a href="index.html#about" class="nav-link">ABOUT</a>
+            <a href="index.html#contact" class="nav-link">CONTACT</a>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="page-title">
+            <h1>Short Clips</h1>
+        </div>
+    </section>
+
+    <!-- Image Grid -->
+    <section class="gallery-grid">
+        <div class="grid-container">
+            <!-- Short Clips -->
+            <div class="grid-item" onclick="openTextModal('Observation', '<p><strong>Responsibility:</strong> Director, Cinematographer, Editor, Sound Designer, Actress etc</p><p><strong>Overview:</strong> An experimental short clip using the kuleshov effect. It\'s a very simple back and forth between the character and the plant. I used this to practice my editing skills. The only thing I\'d change is using an actual camera rather than my phone for better quality, since the window light served as the only lighting.</p>')">
+                <img src="Images/Short Films/ThePowerOfTheKuleshovEffect.png" alt="Observation">
+            </div>
+            <div class="grid-item" onclick="openTextModal('Woda - Haiku', '<p><strong>Responsibility:</strong> Director, Cinematographer, Editor, Sound Designer etc</p><p><strong>Overview:</strong> An experimental short clip. I was inspired by water, hence the name as it means water in Polish. I used old clips that I had from another project I worked on. This piece is made to represent memories and nostalgia and how they can be seen. The flow of water is used to show how memories flow by us without us even noticing. Next time, I would\'ve made the laugh a little lighter-sounding, as it sounds quite unsettling, however, I\'m satisfied with the rest of it.</p>')">
+                <img src="Images/Short Films/WODA.jpg" alt="Woda - Haiku">
+            </div>
+            <div class="grid-item" onclick="openTextModal('Textures of Life - 5 shot sequence', '<p><strong>Responsibility:</strong> Director, Cinematographer, Editor, Sound Designer</p><p><strong>Overview:</strong> An advertisement piece showing off the work of other students. This project was used to practice my editing skills as well as working with other classmates. We all decided on what shot should be done and have collaborated to film it, however we all edited it in different ways. If we had more time, I would\'ve loved to take a wider variety of shots.</p>')">
+                <img src="Images/Short Films/TexturesOfLife.png" alt="Textures of Life">
+            </div>
+            <div class="grid-item" onclick="openTextModal('The Words of Athena', '<p><strong>Responsibility:</strong> Director, Cinematographer, Actress, Sound Designer, Editor etc</p><p><strong>Overview:</strong> An experimental trailer for a planned out project. This was a plan for a series about a teenage girl finding she\'s connected to Athena and greek mythology in some way, finding out it\'s true secrets and what actually happened but little does she know Athena also is able to go into her body and control her. This was a fun project to plan out even though it never came to life. Ideally, the trailer would\'ve been of higher quality, however because it was a short timeline I didn\'t have much of a choice.</p>')">
+                <img src="Images/Short Films/TheWordsOfAthena.png" alt="The Words of Athena">
+            </div>
+            <div class="grid-item" onclick="openTextModal('Amp', '<p><strong>Responsibility:</strong> TBD</p><p><strong>Overview:</strong> Information coming soon.</p>')">
+                <div class="placeholder-item">Amp</div>
+            </div>
+            <div class="grid-item" onclick="openTextModal('Editors Effect', '<p><strong>Responsibility:</strong> TBD</p><p><strong>Overview:</strong> Information coming soon.</p>')">
+                <div class="placeholder-item">Editors Effect</div>
+            </div>
+            <div class="grid-item" onclick="openTextModal('Clowning Around', '<p><strong>Responsibility:</strong> TBD</p><p><strong>Overview:</strong> Information coming soon.</p>')">
+                <div class="placeholder-item">Clowning Around</div>
+            </div>
+            <div class="grid-item" onclick="openTextModal('Mr. Gonk', '<p><strong>Responsibility:</strong> TBD</p><p><strong>Overview:</strong> Information coming soon.</p>')">
+                <div class="placeholder-item">Mr. Gonk</div>
+            </div>
+            <div class="grid-item" onclick="openTextModal('The Watcher', '<p><strong>Responsibility:</strong> TBD</p><p><strong>Overview:</strong> Information coming soon.</p>')">
+                <div class="placeholder-item">The Watcher</div>
+            </div>
+            <div class="grid-item" onclick="openTextModal('Banana', '<p><strong>Responsibility:</strong> TBD</p><p><strong>Overview:</strong> Information coming soon.</p>')">
+                <div class="placeholder-item">Banana</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Overlay -->
+    <div id="modalOverlay" class="modal-overlay">
+        <!-- Image Modal -->
+        <div id="imageModal" class="modal-box">
+            <button class="modal-close">&times;</button>
+            <div class="modal-content-image">
+                <img id="modalImage" src="" alt="Enlarged view">
+            </div>
+        </div>
+
+        <!-- Video Modal -->
+        <div id="videoModal" class="modal-box">
+            <button class="modal-close">&times;</button>
+            <div class="modal-content-video">
+                <div class="video-left">
+                    <h2 id="videoTitle" class="video-title">Project Title</h2>
+                    <p id="videoRole" class="video-role">Role: Director</p>
+                    <div class="video-meta">
+                        <p id="videoMeta"></p>
+                    </div>
+                </div>
+                <div class="video-right">
+                    <div id="videoEmbed" class="video-embed">
+                        <!-- YouTube iframe will be inserted here -->
+                    </div>
+                </div>
+            </div>
+            <div class="video-description">
+                <h3>Description</h3>
+                <p id="videoDescription">Project description goes here...</p>
+            </div>
+        </div>
+
+        <!-- Text Modal -->
+        <div id="textModal" class="modal-box">
+            <button class="modal-close">&times;</button>
+            <div class="modal-content-text">
+                <h2 id="textTitle">Title</h2>
+                <div id="textContent" class="text-content">
+                    <p>Text content goes here...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
