@@ -218,6 +218,7 @@ body {
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    will-change: transform, box-shadow;
     cursor: pointer;
 }
 
@@ -233,6 +234,7 @@ body {
     object-position: center;
     display: block;
     transition: filter 0.3s ease;
+    will-change: filter;
 }
 
 .image-overlay {
@@ -248,6 +250,7 @@ body {
     justify-content: center;
     opacity: 1;
     transition: all 0.3s ease;
+    will-change: opacity, background-color, transform;
 }
 
 .main-text {
@@ -571,6 +574,20 @@ body {
     letter-spacing: 2px;
 }
 
+.page-subheader {
+    padding: 20px 20px 0;
+    text-align: center;
+}
+
+.page-subheader h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: #fff;
+    margin: 0;
+    letter-spacing: 1.5px;
+}
+
 .gallery-grid {
     padding: 80px 20px;
 }
@@ -589,6 +606,7 @@ body {
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    will-change: transform, box-shadow;
 }
 
 .grid-item:hover {
@@ -603,6 +621,7 @@ body {
     object-position: center;
     display: block;
     transition: transform 0.3s ease;
+    will-change: transform;
 }
 
 .grid-item:hover img {
