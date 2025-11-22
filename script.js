@@ -67,6 +67,7 @@ function initModalSystem() {
     const imageModal = document.getElementById('imageModal');
     const videoModal = document.getElementById('videoModal');
     const textModal = document.getElementById('textModal');
+    const dualModal = document.getElementById('dualModal');
     const closeBtns = document.querySelectorAll('.modal-close');
 
     // Close modal function
@@ -78,11 +79,13 @@ function initModalSystem() {
         if (imageModal) imageModal.classList.remove('active');
         if (videoModal) videoModal.classList.remove('active');
         if (textModal) textModal.classList.remove('active');
+        if (dualModal) dualModal.classList.remove('active', 'show-video');
 
         const videoEmbed = document.getElementById('videoEmbed');
-        if (videoEmbed) {
-            videoEmbed.innerHTML = '';
-        }
+        if (videoEmbed) videoEmbed.innerHTML = '';
+        const dualVideoEmbed = document.getElementById('dualVideoEmbed');
+        if (dualVideoEmbed) dualVideoEmbed.innerHTML = '';
+        if (dualModal && dualModal.dataset) dualModal.dataset.videoUrl = '';
     }
 
     // Close button click
@@ -94,7 +97,7 @@ function initModalSystem() {
     });
 
     // Prevent modal boxes from closing when clicked
-    [imageModal, videoModal, textModal].forEach(modal => {
+    [imageModal, videoModal, textModal, dualModal].forEach(modal => {
         if (!modal) return;
         modal.addEventListener('click', function(e) {
             e.stopPropagation();
@@ -110,22 +113,17 @@ function initModalSystem() {
         });
     }
 
-    // ESC key to close
+    // ESC to close
     document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            closeModal();
-        }
+        if (e.key === 'Escape') closeModal();
     });
 
     // Open Image Modal
     window.openImageModal = function(imageSrc) {
         if (!overlay || !imageModal) return;
-
         closeModal();
-
         const modalImage = document.getElementById('modalImage');
         if (!modalImage) return;
-
         modalImage.src = imageSrc;
         overlay.classList.add('active');
         imageModal.classList.add('active');
@@ -184,6 +182,61 @@ function initModalSystem() {
         overlay.classList.add('active');
         textModal.classList.add('active');
     };
+
+    // Open Dual Video/Text Modal
+    window.openDualVideoModal = function(title, textHtml, videoUrl) {
+        if (!overlay || !dualModal) return;
+        closeModal();
+        dualModal.classList.remove('show-video');
+        const dualTitle = document.getElementById('dualTitle');
+        const dualTextContent = document.getElementById('dualTextContent');
+        const dualVideoEmbed = document.getElementById('dualVideoEmbed');
+        if (dualTitle) dualTitle.textContent = title || '';
+        if (dualTextContent) dualTextContent.innerHTML = textHtml || '';
+        if (dualVideoEmbed) dualVideoEmbed.innerHTML = '';
+        dualModal.dataset.videoUrl = videoUrl || '';
+        overlay.classList.add('active');
+        dualModal.classList.add('active');
+    };
+
+    function extractYouTubeId(url) {
+        if (!url) return '';
+        try {
+            if (url.includes('youtu.be/')) return url.split('youtu.be/')[1].split('?')[0];
+            if (url.includes('youtube.com/watch')) {
+                const params = new URLSearchParams(url.split('?')[1]);
+                return params.get('v') || '';
+            }
+            if (url.includes('youtube.com/shorts/')) return url.split('youtube.com/shorts/')[1].split('?')[0];
+        } catch(e) { return ''; }
+        return '';
+    }
+
+    // Outside navigation buttons (text -> video, video -> text)
+    if (dualModal) {
+        const nextBtn = dualModal.querySelector('.next-outside');
+        const backBtn = dualModal.querySelector('.back-outside');
+        if (nextBtn) {
+            nextBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                if (!dualModal.classList.contains('show-video')) {
+                    const vidUrl = dualModal.dataset.videoUrl;
+                    const vidId = extractYouTubeId(vidUrl);
+                    const dualVideoEmbed = document.getElementById('dualVideoEmbed');
+                    if (vidId && dualVideoEmbed && !dualVideoEmbed.querySelector('iframe')) {
+                        dualVideoEmbed.innerHTML = `<iframe src="https://www.youtube.com/embed/${vidId}" allowfullscreen></iframe>`;
+                    }
+                    dualModal.classList.add('show-video');
+                }
+            });
+        }
+        if (backBtn) {
+            backBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                dualModal.classList.remove('show-video');
+            });
+        }
+    }
 
     // Auto-attach click handlers to grid items with images (not onclick handlers)
     const gridItems = document.querySelectorAll('.grid-item');

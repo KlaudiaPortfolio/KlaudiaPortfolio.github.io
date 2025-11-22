@@ -877,6 +877,35 @@ body {
     transform: translateY(-5px);
 }
 
+/* Dual Video/Text Modal */
+.dual-modal .dual-panels { position: relative; overflow: hidden; }
+.dual-modal .dual-track { display: flex; width: 200%; transition: transform 0.6s ease; }
+.dual-modal .dual-panel { width: 50%; padding: 10px 30px 30px; box-sizing: border-box; color:#fff; }
+.dual-text-panel h2 { font-family: 'Playfair Display', serif; font-size: 32px; margin-bottom: 20px; }
+.dual-video-panel { display: flex; align-items: center; justify-content: center; }
+#dualVideoEmbed { position: relative; width: 100%; padding-bottom:56.25%; background:#000; border-radius:4px; overflow:hidden; }
+#dualVideoEmbed iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:none; }
+.dual-modal.show-video .dual-track { transform: translateX(-50%); }
+.dual-nav-btn { position:absolute; top:50%; transform:translateY(-50%); width:56px; height:56px; border-radius:50%; border:2px solid #fff; background:rgba(255,255,255,0.08); color:#fff; font-size:30px; line-height:1; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background .3s ease, transform .3s ease, border-color .3s ease; backdrop-filter: blur(4px); }
+.dual-nav-btn:hover { background:rgba(255,255,255,0.25); transform:translateY(-50%) scale(1.08); }
+.next-outside { right:-70px; }
+.back-outside { left:-70px; display:none; }
+.dual-modal.show-video .next-outside { display:none; }
+.dual-modal.show-video .back-outside { display:flex; }
+.dual-modal { overflow:visible; }
+.dual-modal.active { overflow:visible; }
+.dual-modal .text-content { max-width: 800px; }
+
+@media (max-width: 900px) {
+    .dual-modal .dual-track { width:100%; flex-direction:column; }
+    .dual-modal.show-video .dual-track { transform:none; }
+    .dual-modal .dual-panel { width:100%; }
+    .dual-nav-btn { width:48px; height:48px; font-size:26px; top:auto; transform:none; bottom:12px; }
+    .next-outside { right:12px; }
+    .back-outside { left:12px; }
+    .dual-nav-btn:hover { transform:scale(1.08); }
+}
+
 /* Responsive Modal Styles */
 @media (max-width: 768px) {
     .modal-box {
